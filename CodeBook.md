@@ -18,10 +18,10 @@ The eight files used do not contain NAs.
 
 Dimensions: 6 rows, 2 columns.
 
-Column   Type      Notes
--------  -----     ------
-id       integer   1 to 6
-label    character e.g. 'WALKING' or 'LAYING'
+|Column  |Type      |Notes
+|------- |--------- |--------------------------
+|id      |integer   |1 to 6
+|label   |character |e.g. 'WALKING' or 'LAYING'
 
 Maps activity_id to activity_label. 
 
