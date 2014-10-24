@@ -146,9 +146,9 @@ They key idea is to select the desired columns via text matching against feature
 
 1. No other feature (i.e. variable) label matches 'mean' or 'std'.
 2. The definition of 'meanFreq()' results in 'mean frequency', not 'mean'.
-3. mean()- and std()-variables occur in 'features.txt' always in pairs.
+3. 'mean()' and 'std()' variables occur in 'features.txt' always in pairs.
 
-With 1.-3. as arguments, I decided to use ```grep``` with parameters ```"-mean()"``` and ```fixed = TRUE``` resulting in 33 mean()-variables and ```grep``` with parameters ```"-std()"``` and ```fixed = TRUE``` resulting in 33 std()-variables vector (R script: Step 5).
+With 1.-3. as arguments, I decided to use ```grep``` with parameters ```"-mean()"``` and ```fixed = TRUE``` resulting in 33 mean variables and ```grep``` with parameters ```"-std()"``` and ```fixed = TRUE``` resulting in 33 std variables combined in one vector (R script: Step 5).
 Usage of ```fixed = TRUE``` results in exact matches only thus disregarding feature labels containing 'meanFreq()'.
 
 Using this vector the matrix with 561 columns is reduced to one with 66 columns (33 mean and std variables each) (R script: Step 6).
