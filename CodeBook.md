@@ -148,7 +148,8 @@ They key idea is to select the desired columns via text matching against feature
 2. The definition of 'meanFreq()' results in 'mean frequency', not 'mean'.
 3. mean()- and std()-variables occur in 'features.txt' always in pairs.
 
-With 1.-3. as arguments, I decided to use ```grep``` with parameters ```"-mean()"``` and ```fixed = TRUE``` resulting in 33 mean()-variables and ```grep``` with parameters ```"-std()"``` and ```fixed = TRUE``` resulting in 33 std()-variables vector (R script: Step 5). 
+With 1.-3. as arguments, I decided to use ```grep``` with parameters ```"-mean()"``` and ```fixed = TRUE``` resulting in 33 mean()-variables and ```grep``` with parameters ```"-std()"``` and ```fixed = TRUE``` resulting in 33 std()-variables vector (R script: Step 5).
+Usage of ```fixed = TRUE``` results in exact matches only thus disregarding feature labels containing 'meanFreq()'.
 
 Using this vector the matrix with 561 columns is reduced to one with 66 columns (33 mean and std variables each) (R script: Step 6).
 
@@ -160,7 +161,7 @@ After that all 10299 activity ids are translated into activity labels thus provi
 
 ### 4. Descriptive variable names
 
-After converting the reduced matrix with 66 columns into a data frame, the feature labels obtained under 'Mean and standard deviaton only' (those containing "-mean()" and "-std()") are used as descriptive variable names for this data frame (R script: Step 9).
+After converting the reduced matrix with 66 columns into a data frame, the feature labels obtained under '2. Mean and standard deviaton only' (those containing "-mean()" and "-std()") are used as descriptive variable names for this data frame (R script: Step 9).
 
 Then ```cbind``` is used to create a data frame (the first tidy data set) with 10299 subject ids followed by the same number of activity labels as the first two columns and the (10299*66)-matrix as remaining columns (R script: Step 10):
 
@@ -241,13 +242,19 @@ fBodyBodyGyroJerkMag-std()   numeric     variable 66
 
 ## The Goal
 
-From the tidy data set 1...
-...create an independant data set...
-...with the average of each variable for each activity and each subject.
+From the tidy data set no 1...<br>
+...create an independant data set...<br>
+...with the average of each variable...<br>
+...for each activity and each subject.
 
 ## The solution
 
-Dimensions: 180 rows, 68 columns.
+The key idea is to melt and cast the data set while performing aggregation during the cast.
+
+1. Transform the tidy data no 1 set into the so-called 'long-format' (see http://seananderson.ca/2013/10/19/reshape.html for details) with both subject_id and activity as ID variables (R script: Step 13).<br>The resulting data frame has the following columns:<br>- subject_id<br>- activity<br>- variable<br>- value
+2. Transform the melted data set in to the so called 'wide-format' (see http://seananderson.ca/2013/10/19/reshape.html for details) while using subject_id and activity as ID variables and aggregating each measurement variable with the function mean to compute the average value for each measurement variable for each activity and subject (R script: Step 14).
+
+Dimensions: 180 rows, 68 columns (they are the same as for the tiny data set no 1).
 
 Column                       Type        Notes
 -------                      -------     --------
@@ -256,7 +263,5 @@ activity                     character   e.g. 'WALKING' or 'LAYING'
 tBodyAcc-mean()-X            numeric     variable 01
 ...
 fBodyBodyGyroJerkMag-std()   numeric     variable 66
-
-The columns are the same as for the tiny data set no 1.
 
 
