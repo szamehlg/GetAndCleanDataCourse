@@ -31,10 +31,10 @@ Relation to the experiment: "Each person performed six activities (WALKING, WALK
 
 Dimensions: 561 rows, 2 columns.
 
-Column   Type      Notes
--------  -----     ------
-id       integer   1 to 561
-label    character e.g. 'tBodyAcc-mean()-X' or 'angle(Z,gravityMean)'
+|Column  |Type      |Notes
+|------- |-----     |------
+|id      |integer   |1 to 561
+|label   |character |e.g. 'tBodyAcc-mean()-X' or 'angle(Z,gravityMean)'
 
 Maps feature_id to feature_label. 
 
@@ -45,9 +45,9 @@ from the smartphone's "sensor signals (accelerometer and gyroscope)"
 
 Dimensions: 2947 rows, 1 column.
 
-Column   Type      Notes
--------  -----     ------
-id       integer   Subset of 1 to 30
+|Column  |Type    |Notes
+|------- |-----   |------
+|id      |integer |Subset of 1 to 30
 
 subject_id list. 
 
@@ -57,11 +57,11 @@ Relation to the experiment: "Each row identifies the subject who performed the a
 
 Dimensions: 2947 rows, 561 columns.
 
-Column        Type      Notes
--------       -----     ------
-feature 1     numeric   variable 1
-...           ...       ...
-feature 561   numeric   variable 561
+|Column      |Type    |Notes
+|-------     |-----   |------
+|feature 1   |numeric |variable 1
+|...         |...     |...
+|feature 561 |numeric |variable 561
 
 variables matrix = test data set 
 
@@ -71,9 +71,9 @@ Relation to the experiment: Each row is a "561-feature vector with time and freq
 
 Dimensions: 2947 rows, 1 column.
 
-Column   Type      Notes
--------  -----     ------
-id       integer   1 to 6
+|Column  |Type    |Notes
+|------- |-----   |------
+|id      |integer |1 to 6
 
 activity_id list. 
 
@@ -83,9 +83,9 @@ Relation to the experiment: Id of the "activity for each window sample".
 
 Dimensions: 7352 rows, 1 column.
 
-Column   Type      Notes
--------  -----     ------
-id       integer   Subset of 1 to 30
+|Column  |Type    |Notes
+|------- |-----   |------
+|id      |integer |Subset of 1 to 30
 
 subject_id list. 
 
@@ -95,11 +95,11 @@ Relation to the experiment: "Each row identifies the subject who performed the a
 
 Dimensions: 7352 rows, 561 columns.
 
-Column        Type      Notes
--------       -----     ------
-feature 1     numeric   variable 1
-...           ...       ...
-feature 561   numeric   variable 561
+|Column      |Type    |Notes
+|-------     |-----   |------
+|feature 1   |numeric |variable 1
+|...         |...     |...
+|feature 561 |numeric |variable 561
 
 variables matrix = training data set
 
@@ -109,9 +109,9 @@ Relation to the experiment: Each row is a "561-feature vector with time and freq
 
 Dimensions: 7352 rows, 1 column.
 
-Column   Type      Notes
--------  -----     ------
-id       integer   1 to 6
+|Column  |Type    |Notes
+|------- |------  |------
+|id      |integer |1 to 6
 
 activity_id list. 
 
@@ -163,80 +163,82 @@ After that all 10299 activity ids are translated into activity labels thus provi
 
 After converting the reduced matrix with 66 columns into a data frame, the feature labels obtained under '2. Mean and standard deviaton only' (those containing "-mean()" and "-std()") are used as descriptive variable names for this data frame (R script: Step 9).
 
-Then ```cbind``` is used to create a data frame (the first tidy data set) with 10299 subject ids followed by the same number of activity labels as the first two columns and the (10299*66)-matrix as remaining columns (R script: Step 10):
+Then ```cbind``` is used to create a data frame (the first tidy data set) with 10299 subject ids followed by the same number of activity labels as the first two columns and the (10299*66)-matrix as remaining columns (R script: Step 10), see below.
+
+### Code book
 
 Dimensions: 10299 rows, 1 + 1 + 66 = 68 columns.
 
-Column                       Type        Notes
--------                      -------     --------
-subject_id                   integer     1 to 30
-activity                     character   e.g. 'WALKING' or 'LAYING'
-tBodyAcc-mean()-X            numeric     variable 01
-tBodyAcc-mean()-Y            numeric     variable 02
-tBodyAcc-mean()-Z            numeric     variable 03
-tBodyAcc-std()-X             numeric     variable 04
-tBodyAcc-std()-Y             numeric     variable 05
-tBodyAcc-std()-Z             numeric     variable 06
-tGravityAcc-mean()-X         numeric     variable 07
-tGravityAcc-mean()-Y         numeric     variable 08
-tGravityAcc-mean()-Z         numeric     variable 09
-tGravityAcc-std()-X          numeric     variable 10
-tGravityAcc-std()-Y          numeric     variable 11
-tGravityAcc-std()-Z          numeric     variable 12
-tBodyAccJerk-mean()-X        numeric     variable 13
-tBodyAccJerk-mean()-Y        numeric     variable 14
-tBodyAccJerk-mean()-Z        numeric     variable 15
-tBodyAccJerk-std()-X         numeric     variable 16
-tBodyAccJerk-std()-Y         numeric     variable 17
-tBodyAccJerk-std()-Z         numeric     variable 18
-tBodyGyro-mean()-X           numeric     variable 19
-tBodyGyro-mean()-Y           numeric     variable 20
-tBodyGyro-mean()-Z           numeric     variable 21
-tBodyGyro-std()-X            numeric     variable 22
-tBodyGyro-std()-Y            numeric     variable 23
-tBodyGyro-std()-Z            numeric     variable 24
-tBodyGyroJerk-mean()-X       numeric     variable 25
-tBodyGyroJerk-mean()-Y       numeric     variable 26
-tBodyGyroJerk-mean()-Z       numeric     variable 27
-tBodyGyroJerk-std()-X        numeric     variable 28
-tBodyGyroJerk-std()-Y        numeric     variable 29
-tBodyGyroJerk-std()-Z        numeric     variable 30
-tBodyAccMag-mean()           numeric     variable 31
-tBodyAccMag-std()            numeric     variable 32
-tGravityAccMag-mean()        numeric     variable 33
-tGravityAccMag-std()         numeric     variable 34
-tBodyAccJerkMag-mean()       numeric     variable 35
-tBodyAccJerkMag-std()        numeric     variable 36
-tBodyGyroMag-mean()          numeric     variable 37
-tBodyGyroMag-std()           numeric     variable 38
-tBodyGyroJerkMag-mean()      numeric     variable 39
-tBodyGyroJerkMag-std()       numeric     variable 40
-fBodyAcc-mean()-X            numeric     variable 41
-fBodyAcc-mean()-Y            numeric     variable 42
-fBodyAcc-mean()-Z            numeric     variable 43
-fBodyAcc-std()-X             numeric     variable 44
-fBodyAcc-std()-Y             numeric     variable 45
-fBodyAcc-std()-Z             numeric     variable 46
-fBodyAccJerk-mean()-X        numeric     variable 47
-fBodyAccJerk-mean()-Y        numeric     variable 48
-fBodyAccJerk-mean()-Z        numeric     variable 49
-fBodyAccJerk-std()-X         numeric     variable 50
-fBodyAccJerk-std()-Y         numeric     variable 51
-fBodyAccJerk-std()-Z         numeric     variable 52
-fBodyGyro-mean()-X           numeric     variable 53
-fBodyGyro-mean()-Y           numeric     variable 54
-fBodyGyro-mean()-Z           numeric     variable 55
-fBodyGyro-std()-X            numeric     variable 56
-fBodyGyro-std()-Y            numeric     variable 57
-fBodyGyro-std()-Z            numeric     variable 58
-fBodyAccMag-mean()           numeric     variable 59
-fBodyAccMag-std()            numeric     variable 60
-fBodyBodyAccJerkMag-mean()   numeric     variable 61
-fBodyBodyAccJerkMag-std()    numeric     variable 62
-fBodyBodyGyroMag-mean()      numeric     variable 63
-fBodyBodyGyroMag-std()       numeric     variable 64
-fBodyBodyGyroJerkMag-mean()  numeric     variable 65
-fBodyBodyGyroJerkMag-std()   numeric     variable 66
+|Column                       |Type        |Notes
+|-------                      |-------     |--------
+|subject_id                   |integer     |1 to 30
+|activity                     |character   |e.g. 'WALKING' or 'LAYING'
+|tBodyAcc-mean()-X            |numeric     |variable 01
+|tBodyAcc-mean()-Y            |numeric     |variable 02
+|tBodyAcc-mean()-Z            |numeric     |variable 03
+|tBodyAcc-std()-X             |numeric     |variable 04
+|tBodyAcc-std()-Y             |numeric     |variable 05
+|tBodyAcc-std()-Z             |numeric     |variable 06
+|tGravityAcc-mean()-X         |numeric     |variable 07
+|tGravityAcc-mean()-Y         |numeric     |variable 08
+|tGravityAcc-mean()-Z         |numeric     |variable 09
+|tGravityAcc-std()-X          |numeric     |variable 10
+|tGravityAcc-std()-Y          |numeric     |variable 11
+|tGravityAcc-std()-Z          |numeric     |variable 12
+|tBodyAccJerk-mean()-X        |numeric     |variable 13
+|tBodyAccJerk-mean()-Y        |numeric     |variable 14
+|tBodyAccJerk-mean()-Z        |numeric     |variable 15
+|tBodyAccJerk-std()-X         |numeric     |variable 16
+|tBodyAccJerk-std()-Y         |numeric     |variable 17
+|tBodyAccJerk-std()-Z         |numeric     |variable 18
+|tBodyGyro-mean()-X           |numeric     |variable 19
+|tBodyGyro-mean()-Y           |numeric     |variable 20
+|tBodyGyro-mean()-Z           |numeric     |variable 21
+|tBodyGyro-std()-X            |numeric     |variable 22
+|tBodyGyro-std()-Y            |numeric     |variable 23
+|tBodyGyro-std()-Z            |numeric     |variable 24
+|tBodyGyroJerk-mean()-X       |numeric     |variable 25
+|tBodyGyroJerk-mean()-Y       |numeric     |variable 26
+|tBodyGyroJerk-mean()-Z       |numeric     |variable 27
+|tBodyGyroJerk-std()-X        |numeric     |variable 28
+|tBodyGyroJerk-std()-Y        |numeric     |variable 29
+|tBodyGyroJerk-std()-Z        |numeric     |variable 30
+|tBodyAccMag-mean()           |numeric     |variable 31
+|tBodyAccMag-std()            |numeric     |variable 32
+|tGravityAccMag-mean()        |numeric     |variable 33
+|tGravityAccMag-std()         |numeric     |variable 34
+|tBodyAccJerkMag-mean()       |numeric     |variable 35
+|tBodyAccJerkMag-std()        |numeric     |variable 36
+|tBodyGyroMag-mean()          |numeric     |variable 37
+|tBodyGyroMag-std()           |numeric     |variable 38
+|tBodyGyroJerkMag-mean()      |numeric     |variable 39
+|tBodyGyroJerkMag-std()       |numeric     |variable 40
+|fBodyAcc-mean()-X            |numeric     |variable 41
+|fBodyAcc-mean()-Y            |numeric     |variable 42
+|fBodyAcc-mean()-Z            |numeric     |variable 43
+|fBodyAcc-std()-X             |numeric     |variable 44
+|fBodyAcc-std()-Y             |numeric     |variable 45
+|fBodyAcc-std()-Z             |numeric     |variable 46
+|fBodyAccJerk-mean()-X        |numeric     |variable 47
+|fBodyAccJerk-mean()-Y        |numeric     |variable 48
+|fBodyAccJerk-mean()-Z        |numeric     |variable 49
+|fBodyAccJerk-std()-X         |numeric     |variable 50
+|fBodyAccJerk-std()-Y         |numeric     |variable 51
+|fBodyAccJerk-std()-Z         |numeric     |variable 52
+|fBodyGyro-mean()-X           |numeric     |variable 53
+|fBodyGyro-mean()-Y           |numeric     |variable 54
+|fBodyGyro-mean()-Z           |numeric     |variable 55
+|fBodyGyro-std()-X            |numeric     |variable 56
+|fBodyGyro-std()-Y            |numeric     |variable 57
+|fBodyGyro-std()-Z            |numeric     |variable 58
+|fBodyAccMag-mean()           |numeric     |variable 59
+|fBodyAccMag-std()            |numeric     |variable 60
+|fBodyBodyAccJerkMag-mean()   |numeric     |variable 61
+|fBodyBodyAccJerkMag-std()    |numeric     |variable 62
+|fBodyBodyGyroMag-mean()      |numeric     |variable 63
+|fBodyBodyGyroMag-std()       |numeric     |variable 64
+|fBodyBodyGyroJerkMag-mean()  |numeric     |variable 65
+|fBodyBodyGyroJerkMag-std()   |numeric     |variable 66
 
 # Tidy Data Set No 2 - the Aggregated Data 
 
@@ -252,16 +254,18 @@ From the tidy data set no 1...<br>
 The key idea is to melt and cast the data set while performing aggregation during the cast.
 
 1. Transform the tidy data no 1 set into the so-called 'long-format' (see http://seananderson.ca/2013/10/19/reshape.html for details) with both subject_id and activity as ID variables (R script: Step 13).<br>The resulting data frame has the following columns:<br>- subject_id<br>- activity<br>- variable<br>- value
-2. Transform the melted data set in to the so called 'wide-format' (see http://seananderson.ca/2013/10/19/reshape.html for details) while using subject_id and activity as ID variables and aggregating each measurement variable with the function mean to compute the average value for each measurement variable for each activity and subject (R script: Step 14).
+2. Transform the melted data set in to the so called 'wide-format' (see http://seananderson.ca/2013/10/19/reshape.html for details) while using subject_id and activity as ID variables and aggregating each measurement variable with the function ```mean``` to compute the average value for each measurement variable for each activity and subject (R script: Step 14).
+
+## Code book
 
 Dimensions: 180 rows, 68 columns (they are the same as for the tiny data set no 1).
 
-Column                       Type        Notes
--------                      -------     --------
-subject_id                   integer     1 to 30
-activity                     character   e.g. 'WALKING' or 'LAYING'
-tBodyAcc-mean()-X            numeric     variable 01
-...
-fBodyBodyGyroJerkMag-std()   numeric     variable 66
+|Column                       |Type        |Notes
+|-------                      |-------     |--------
+|subject_id                   |integer     |1 to 30
+|activity                     |character   |e.g. 'WALKING' or 'LAYING'
+|tBodyAcc-mean()-X            |numeric     |variable 01
+|...                          |...         |...
+|fBodyBodyGyroJerkMag-std()   |numeric     |variable 66
 
 
