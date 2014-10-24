@@ -142,20 +142,26 @@ tidyfy_data <- function() {
 	    )
 	}
     
-    #
-    # 1. Read 6 lines mapping activity ids 1-6 to a label each from
-    #    "./UCI HAR Dataset/activity_labels.txt"
-    #
-	activities_df <- read.table(
-		paste(fname_folder, "activity_labels.txt", sep = fname_separator),
-		sep = " ", 
-		col.names = c("activity_id", "activity_label"), 
-		colClasses = c("integer", "character"), 
-            stringsAsFactors = FALSE
-	)
-
 	#
-	# 2. Read 561 lines mapping feature ids 1-561 to a label each and therefore
+	# 1. Read activity ids by merging 7352 training set lines with 2947 test set lines
+	#    (each containing an activity id out of 1-6).
+	#
+	activity_ids <- rbind(read_activity_ids(params_training), read_activity_ids(params_test))
+	
+	#
+	# 2. Read subject ids by merging 7352 training set lines with 2947 test set lines
+	#    (each containing one subject id).
+	#
+	subject_ids <- rbind(read_subject_ids(params_training), read_subject_ids(params_test))
+	
+	#
+	# 3. Read the data set by merging 7352 training set lines with 2947 test set lines
+	#    (each consisting of 561 variables).
+	#
+	full_matrix <- rbind(read_matrix(params_training$name), read_matrix(params_test$name))
+	
+	#
+	# 4. Read 561 lines mapping feature ids 1-561 to a label each and therefore
     #    describing each variable from
 	#    "./UCI HAR Dataset/features.txt"
 	#
@@ -168,7 +174,7 @@ tidyfy_data <- function() {
 	)
 
     #
-    # 3. Compute a subset of all features (i.e. variables) that contains
+    # 5. Compute a subset of all features (i.e. variables) that contains
     #    mean and standard deviation features only as a data frame
     #    with ids and labels as columns.
     #
@@ -186,46 +192,40 @@ tidyfy_data <- function() {
     )
     
 	#
-	# 4. Read activity ids by merging 7352 training set lines with 2947 test set lines
-	#    (each containing an activity id out of 1-6).
-	#
-    activity_ids <- rbind(read_activity_ids(params_training), read_activity_ids(params_test))
-
-    #
-	# 5. Read subject ids by merging 7352 training set lines with 2947 test set lines
-	#    (each containing one subject id).
-	#
-	subject_ids <- rbind(read_subject_ids(params_training), read_subject_ids(params_test))
-	
-	#
-	# 6. Read the data set by merging 7352 training set lines with 2947 test set lines
-	#    (each consisting of 561 variables).
-	#
-    full_matrix <- rbind(read_matrix(params_training$name), read_matrix(params_test$name))
-    
-    #
-    # 7. Reduce the full matrix with 561 columns to one with 66 columns (33 mean and std
+    # 6. Reduce the full matrix with 561 columns to one with 66 columns (33 mean and std
     #    variables each) because we are interested in mean and standard deviation variables
     #    only:
     #
     feature_id_vector <- my_features_df[[1]] # 1-6, 41-46, ..., 542, 543.
 	my_matrix <- subset(full_matrix, select = feature_id_vector)
     
-    #
-	# 8. Turn the matrix into a data frame providing human-readable variable (i.e.
-    #    column) names.
 	#
-	matrix_df <- data.frame(my_matrix)
-    colnames(matrix_df) <- my_features_df[[2]]
-    
+	# 7. Read 6 lines mapping activity ids 1-6 to a label each from
+	#    "./UCI HAR Dataset/activity_labels.txt"
+	#
+	activities_df <- read.table(
+	    paste(fname_folder, "activity_labels.txt", sep = fname_separator),
+	    sep = " ", 
+	    col.names = c("activity_id", "activity_label"), 
+	    colClasses = c("integer", "character"), 
+	    stringsAsFactors = FALSE
+	)
+	
     #
-    # 9. The activity ids are translated into activity labels and a proper column
+    # 8. The activity ids are translated into activity labels and a proper column
     #    name is provided.
     #
     activity_labels <- activities_df[[2]]
     activity_col <- sapply(activity_ids, function(x) activity_labels[x])
 	colnames(activity_col) = c("activity") 
 
+	#
+	# 9. Turn the matrix into a data frame providing human-readable variable (i.e.
+	#    column) names.
+	#
+	matrix_df <- data.frame(my_matrix)
+	colnames(matrix_df) <- my_features_df[[2]]
+	
 	#
 	# 10. Create a data frame with 10299 subject ids followed by the same number
     #     of activity labels as the first two columns and the (10299*66)-matrix as 
@@ -255,7 +255,7 @@ tidyfy_data <- function() {
 #
 compute_averages <- function() {
     #
-    # 1. Transform the tidy data set into the so-called 'long-format'
+    # 13. Transform the tidy data set into the so-called 'long-format'
     #    (see http://seananderson.ca/2013/10/19/reshape.html for details)
     #    with both subject_id and activity as ID variables.
     #
@@ -268,7 +268,7 @@ compute_averages <- function() {
     df_melt <- melt(tidyfy_data(), c("subject_id", "activity"))
     
     #
-    # 2. Transform the melted data set in to the so called 'wide-format'
+    # 14. Transform the melted data set in to the so called 'wide-format'
     #    (see http://seananderson.ca/2013/10/19/reshape.html for details)
     #    while using subject_id and activity as ID variables and
     #    aggregating each measurement variable with the function mean
@@ -278,13 +278,13 @@ compute_averages <- function() {
     df_cast <- dcast(df_melt, subject_id + activity ~ variable, fun.aggregate = mean)
     
     #
-    # 3. Below we just follow the course project's instructions to create a "data set 
+    # 15. Below we just follow the course project's instructions to create a "data set 
     #     as a txt file created with write.table() using row.name=FALSE"
     #
     write.table(df_cast, "./result_data.txt", row.name = FALSE)
     
     #
-    # 4. Return the aggregated tidy data set for further use
+    # 16. Return the aggregated tidy data set for further use
     #
     df_cast
 }
