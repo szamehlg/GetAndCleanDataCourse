@@ -63,7 +63,7 @@ Dimensions: 2947 rows, 561 columns.
 |...         |...     |...
 |feature 561 |numeric |variable 561
 
-variables matrix = test data set 
+variables matrix = test data set (every feature is a measure)
 
 Relation to the experiment: Each row is a "561-feature vector with time and frequency domain variables" and "The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data."
 
@@ -101,7 +101,7 @@ Dimensions: 7352 rows, 561 columns.
 |...         |...     |...
 |feature 561 |numeric |variable 561
 
-variables matrix = training data set
+variables matrix = training data set (every feature is a measure)
 
 Relation to the experiment: Each row is a "561-feature vector with time and frequency domain variables" and "The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data."
 
@@ -173,72 +173,72 @@ Dimensions: 10299 rows, 1 + 1 + 66 = 68 columns.
 |-------                      |-------     |--------
 |subject_id                   |integer     |1 to 30
 |activity                     |character   |e.g. 'WALKING' or 'LAYING'
-|tBodyAcc-mean()-X            |numeric     |variable 01
-|tBodyAcc-mean()-Y            |numeric     |variable 02
-|tBodyAcc-mean()-Z            |numeric     |variable 03
-|tBodyAcc-std()-X             |numeric     |variable 04
-|tBodyAcc-std()-Y             |numeric     |variable 05
-|tBodyAcc-std()-Z             |numeric     |variable 06
-|tGravityAcc-mean()-X         |numeric     |variable 07
-|tGravityAcc-mean()-Y         |numeric     |variable 08
-|tGravityAcc-mean()-Z         |numeric     |variable 09
-|tGravityAcc-std()-X          |numeric     |variable 10
-|tGravityAcc-std()-Y          |numeric     |variable 11
-|tGravityAcc-std()-Z          |numeric     |variable 12
-|tBodyAccJerk-mean()-X        |numeric     |variable 13
-|tBodyAccJerk-mean()-Y        |numeric     |variable 14
-|tBodyAccJerk-mean()-Z        |numeric     |variable 15
-|tBodyAccJerk-std()-X         |numeric     |variable 16
-|tBodyAccJerk-std()-Y         |numeric     |variable 17
-|tBodyAccJerk-std()-Z         |numeric     |variable 18
-|tBodyGyro-mean()-X           |numeric     |variable 19
-|tBodyGyro-mean()-Y           |numeric     |variable 20
-|tBodyGyro-mean()-Z           |numeric     |variable 21
-|tBodyGyro-std()-X            |numeric     |variable 22
-|tBodyGyro-std()-Y            |numeric     |variable 23
-|tBodyGyro-std()-Z            |numeric     |variable 24
-|tBodyGyroJerk-mean()-X       |numeric     |variable 25
-|tBodyGyroJerk-mean()-Y       |numeric     |variable 26
-|tBodyGyroJerk-mean()-Z       |numeric     |variable 27
-|tBodyGyroJerk-std()-X        |numeric     |variable 28
-|tBodyGyroJerk-std()-Y        |numeric     |variable 29
-|tBodyGyroJerk-std()-Z        |numeric     |variable 30
-|tBodyAccMag-mean()           |numeric     |variable 31
-|tBodyAccMag-std()            |numeric     |variable 32
-|tGravityAccMag-mean()        |numeric     |variable 33
-|tGravityAccMag-std()         |numeric     |variable 34
-|tBodyAccJerkMag-mean()       |numeric     |variable 35
-|tBodyAccJerkMag-std()        |numeric     |variable 36
-|tBodyGyroMag-mean()          |numeric     |variable 37
-|tBodyGyroMag-std()           |numeric     |variable 38
-|tBodyGyroJerkMag-mean()      |numeric     |variable 39
-|tBodyGyroJerkMag-std()       |numeric     |variable 40
-|fBodyAcc-mean()-X            |numeric     |variable 41
-|fBodyAcc-mean()-Y            |numeric     |variable 42
-|fBodyAcc-mean()-Z            |numeric     |variable 43
-|fBodyAcc-std()-X             |numeric     |variable 44
-|fBodyAcc-std()-Y             |numeric     |variable 45
-|fBodyAcc-std()-Z             |numeric     |variable 46
-|fBodyAccJerk-mean()-X        |numeric     |variable 47
-|fBodyAccJerk-mean()-Y        |numeric     |variable 48
-|fBodyAccJerk-mean()-Z        |numeric     |variable 49
-|fBodyAccJerk-std()-X         |numeric     |variable 50
-|fBodyAccJerk-std()-Y         |numeric     |variable 51
-|fBodyAccJerk-std()-Z         |numeric     |variable 52
-|fBodyGyro-mean()-X           |numeric     |variable 53
-|fBodyGyro-mean()-Y           |numeric     |variable 54
-|fBodyGyro-mean()-Z           |numeric     |variable 55
-|fBodyGyro-std()-X            |numeric     |variable 56
-|fBodyGyro-std()-Y            |numeric     |variable 57
-|fBodyGyro-std()-Z            |numeric     |variable 58
-|fBodyAccMag-mean()           |numeric     |variable 59
-|fBodyAccMag-std()            |numeric     |variable 60
-|fBodyBodyAccJerkMag-mean()   |numeric     |variable 61
-|fBodyBodyAccJerkMag-std()    |numeric     |variable 62
-|fBodyBodyGyroMag-mean()      |numeric     |variable 63
-|fBodyBodyGyroMag-std()       |numeric     |variable 64
-|fBodyBodyGyroJerkMag-mean()  |numeric     |variable 65
-|fBodyBodyGyroJerkMag-std()   |numeric     |variable 66
+|tBodyAcc-mean()-X            |numeric     |measure 01
+|tBodyAcc-mean()-Y            |numeric     |measure 02
+|tBodyAcc-mean()-Z            |numeric     |measure 03
+|tBodyAcc-std()-X             |numeric     |measure 04
+|tBodyAcc-std()-Y             |numeric     |measure 05
+|tBodyAcc-std()-Z             |numeric     |measure 06
+|tGravityAcc-mean()-X         |numeric     |measure 07
+|tGravityAcc-mean()-Y         |numeric     |measure 08
+|tGravityAcc-mean()-Z         |numeric     |measure 09
+|tGravityAcc-std()-X          |numeric     |measure 10
+|tGravityAcc-std()-Y          |numeric     |measure 11
+|tGravityAcc-std()-Z          |numeric     |measure 12
+|tBodyAccJerk-mean()-X        |numeric     |measure 13
+|tBodyAccJerk-mean()-Y        |numeric     |measure 14
+|tBodyAccJerk-mean()-Z        |numeric     |measure 15
+|tBodyAccJerk-std()-X         |numeric     |measure 16
+|tBodyAccJerk-std()-Y         |numeric     |measure 17
+|tBodyAccJerk-std()-Z         |numeric     |measure 18
+|tBodyGyro-mean()-X           |numeric     |measure 19
+|tBodyGyro-mean()-Y           |numeric     |measure 20
+|tBodyGyro-mean()-Z           |numeric     |measure 21
+|tBodyGyro-std()-X            |numeric     |measure 22
+|tBodyGyro-std()-Y            |numeric     |measure 23
+|tBodyGyro-std()-Z            |numeric     |measure 24
+|tBodyGyroJerk-mean()-X       |numeric     |measure 25
+|tBodyGyroJerk-mean()-Y       |numeric     |measure 26
+|tBodyGyroJerk-mean()-Z       |numeric     |measure 27
+|tBodyGyroJerk-std()-X        |numeric     |measure 28
+|tBodyGyroJerk-std()-Y        |numeric     |measure 29
+|tBodyGyroJerk-std()-Z        |numeric     |measure 30
+|tBodyAccMag-mean()           |numeric     |measure 31
+|tBodyAccMag-std()            |numeric     |measure 32
+|tGravityAccMag-mean()        |numeric     |measure 33
+|tGravityAccMag-std()         |numeric     |measure 34
+|tBodyAccJerkMag-mean()       |numeric     |measure 35
+|tBodyAccJerkMag-std()        |numeric     |measure 36
+|tBodyGyroMag-mean()          |numeric     |measure 37
+|tBodyGyroMag-std()           |numeric     |measure 38
+|tBodyGyroJerkMag-mean()      |numeric     |measure 39
+|tBodyGyroJerkMag-std()       |numeric     |measure 40
+|fBodyAcc-mean()-X            |numeric     |measure 41
+|fBodyAcc-mean()-Y            |numeric     |measure 42
+|fBodyAcc-mean()-Z            |numeric     |measure 43
+|fBodyAcc-std()-X             |numeric     |measure 44
+|fBodyAcc-std()-Y             |numeric     |measure 45
+|fBodyAcc-std()-Z             |numeric     |measure 46
+|fBodyAccJerk-mean()-X        |numeric     |measure 47
+|fBodyAccJerk-mean()-Y        |numeric     |measure 48
+|fBodyAccJerk-mean()-Z        |numeric     |measure 49
+|fBodyAccJerk-std()-X         |numeric     |measure 50
+|fBodyAccJerk-std()-Y         |numeric     |measure 51
+|fBodyAccJerk-std()-Z         |numeric     |measure 52
+|fBodyGyro-mean()-X           |numeric     |measure 53
+|fBodyGyro-mean()-Y           |numeric     |measure 54
+|fBodyGyro-mean()-Z           |numeric     |measure 55
+|fBodyGyro-std()-X            |numeric     |measure 56
+|fBodyGyro-std()-Y            |numeric     |measure 57
+|fBodyGyro-std()-Z            |numeric     |measure 58
+|fBodyAccMag-mean()           |numeric     |measure 59
+|fBodyAccMag-std()            |numeric     |measure 60
+|fBodyBodyAccJerkMag-mean()   |numeric     |measure 61
+|fBodyBodyAccJerkMag-std()    |numeric     |measure 62
+|fBodyBodyGyroMag-mean()      |numeric     |measure 63
+|fBodyBodyGyroMag-std()       |numeric     |measure 64
+|fBodyBodyGyroJerkMag-mean()  |numeric     |measure 65
+|fBodyBodyGyroJerkMag-std()   |numeric     |measure 66
 
 # Tidy Data Set No 2 - the Aggregated Data 
 
@@ -264,8 +264,8 @@ Dimensions: 180 rows, 68 columns (they are the same as for the tiny data set no 
 |-------                      |-------     |--------
 |subject_id                   |integer     |1 to 30
 |activity                     |character   |e.g. 'WALKING' or 'LAYING'
-|tBodyAcc-mean()-X            |numeric     |variable 01
+|tBodyAcc-mean()-X            |numeric     |measure 01
 |...                          |...         |...
-|fBodyBodyGyroJerkMag-std()   |numeric     |variable 66
+|fBodyBodyGyroJerkMag-std()   |numeric     |measure 66
 
 
